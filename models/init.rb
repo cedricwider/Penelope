@@ -1,10 +1,11 @@
 require 'mongo'
+require 'uri'
 
 def get_connection
   return @db_connection if @db_connection
 
-  connection_settings = URI.parse(ENV['MONGOHQ_URL'])
-  if connection_settings
+  if ENV['MONGOHQ_URL']
+    connection_settings = URI.parse(ENV['MONGOHQ_URL'])
     db_name = connection_settings.path.gsub(/^\//, '')
     @db_connection = Mongo::Connection.new(connection_settings.host, connection_settings.port).db(db_name)
     @db_connection.authenticate(connection_settings.user, connection_settings.password) unless (connection_settings.user.nil? || connection_settings.password.nil?)

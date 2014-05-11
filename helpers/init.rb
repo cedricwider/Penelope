@@ -1,0 +1,2 @@
+require_relative 'partial_partials'
+Penelope.helpers PartialPartials

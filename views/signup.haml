@@ -1,0 +1,16 @@
+/ Signup page
+
+%form.form-horizontal(method="post" action="signup" )
+  %div.well.col-sm-10.col-sm-offset-1
+    %div.col-sm-6.col-sm-offset-3
+      %input.form-control{:type=>'text',:placeholder=>'Firstname',:name=>'firstname'}
+    %div.col-sm-6.col-sm-offset-3
+      %input.form-control{:type=>'text',:placeholder=>'Lastname',:name=>'lastname'}
+    %div.col-sm-6.col-sm-offset-3
+      %input.form-control{:type=>'email',:placeholder=>'Email',:name=>'email'}
+    %div.col-sm-6.col-sm-offset-3
+      %input.form-control{:type=>'password',:placeholder=>'Password',:name=>'password'}
+    %div.col-sm-6.col-sm-offset-3
+      %p &nbsp;
+    %div.col-sm-6.col-sm-offset-3
+      %button.btn.btn-primary{:type=>'submit'} Sign up

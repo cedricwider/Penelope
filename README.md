@@ -1,0 +1,4 @@
+Penelope
+========
+
+Sinatra boilerplate application

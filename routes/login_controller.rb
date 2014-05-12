@@ -12,7 +12,7 @@ class Penelope < Sinatra::Application
     @user.firstname =user_doc['firstname']
     @user.lastname =user_doc['lastname']
     session['user'] = @user
-    haml :home, :attr_wrapper => '"'
+    redirect to('/home')
   end
 
   get '/signup' do

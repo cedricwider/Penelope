@@ -1,16 +1,9 @@
 / Signup page
 
-%form.form-horizontal(method="post" action="signup" )
-  %div.well.col-sm-10.col-sm-offset-1
-    %div.col-sm-6.col-sm-offset-3
-      %input.form-control{:type=>'text',:placeholder=>'Firstname',:name=>'firstname'}
-    %div.col-sm-6.col-sm-offset-3
-      %input.form-control{:type=>'text',:placeholder=>'Lastname',:name=>'lastname'}
-    %div.col-sm-6.col-sm-offset-3
-      %input.form-control{:type=>'email',:placeholder=>'Email',:name=>'email'}
-    %div.col-sm-6.col-sm-offset-3
-      %input.form-control{:type=>'password',:placeholder=>'Password',:name=>'password'}
-    %div.col-sm-6.col-sm-offset-3
-      %p &nbsp;
-    %div.col-sm-6.col-sm-offset-3
-      %button.btn.btn-primary{:type=>'submit'} Sign up
+%form.form-signin(method="post" action="signup" )
+  %div.well.col-lg-12
+    %input.form-control.top-radius{:type=>'text',:placeholder=>'Firstname',:name=>'firstname'}
+    %input.form-control.no-radius{:type=>'text',:placeholder=>'Lastname',:name=>'lastname'}
+    %input.form-control.no-radius{:type=>'email',:placeholder=>'Email',:name=>'email'}
+    %input.form-control.bottom-radius{:type=>'password',:placeholder=>'Password',:name=>'password'}
+    %button.btn.btn-lg.btn-primary.btn-block.top-buffer{:type=>'submit'} Sign up

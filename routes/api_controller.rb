@@ -1,7 +1,7 @@
 class Penelope < Sinatra::Application
 
   before '/api/*' do
-    unless request.path_info =~ /^\/api\/(user)(\/\w+)?$/
+    unless request.path_info =~ /^\/api\/(user|event)(\/\w+)?$/
       puts "path #{request.path_info} doesn't match /api/user"
       halt 404
     end
@@ -12,7 +12,12 @@ class Penelope < Sinatra::Application
   end
 
   get '/api/:thing/:id' do
-    from_bson_id(DB.collection(params[:thing]).find_one(to_bson_id(params[:id]))).to_json
+    if (params[:thing] == 'user' && params[:id] == 'me')
+      from_bson_id(DB.collection('user').find_one(@user._id)).to_json
+    else
+      from_bson_id(DB.collection(params[:thing]).find_one(to_bson_id(params[:id]))).to_json
+    end
+
   end
 
   post '/api/:thing' do

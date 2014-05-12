@@ -1,3 +1,56 @@
 / Your title comment
 
-%div
+%div.container
+
+  /Jumbotron
+  %div.jumbotron.bg-white
+    %h2 #{@user.firstname}&nbsp;#{@user.lastname}
+    %small
+      %div.row
+        %div.col-sm-4
+          %span.glyphicon.glyphicon-envelope &nbsp;#{@user.email}
+  / End Jumbotron
+
+  / Upcoming Events
+  %div.panel.panel-primary
+    %div.panel-heading
+      %h4 Upcoming Events
+    %div.panel-body
+      %div.row
+        %div.col-md-11
+          <em>09.04.1979</em> My Birthday
+  / End Upcoming Events
+
+  / Middle Area
+  %div.row.top-buffer
+    %div.col-lg-12
+      %div.row
+
+        / My Events
+        %div.col-md-5
+          %div#my_events.panel.panel-info
+            %div.panel.panel-heading
+              %h4 My Events
+        %ul#event_list.list-group
+        / End My Events
+
+        / My Friends
+        %div.col-md-offset-2.col-md-5
+          %div#my_friends.panel.panel-info
+            %div.panel-heading
+              %h4 My Friends
+        / End My Friends
+  / End Middle Area
+
+  / Modal definition
+  %div#event_edit.fade.modal{'tabindex'=>'-1', 'role'=>'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+    %div.modal-dialog
+      %div#event_edit_view.modal-content.bg-dark-white
+  / End Modal definition
+
+  / template definition
+
+%script#edit_event_template{'type' => 'text/x-handlebars-template', 'src' => '/home/edit_event_template'}
+%scipt#event_list_item_template{'type' => 'text/x-handlebars-template', 'src' => '/home/event_list_item_template'}
+%script{'src' => '/js/application.js'}
+  / End template definition

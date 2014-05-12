@@ -1,5 +1,9 @@
 class Penelope < Sinatra::Application
 
+  before '/api/*' do
+    halt 404 unless request.path_info =~ /^\/api\/(user)(\/\w+)?$/
+  end
+
   get '/api/:thing' do
     DB.collection(params[:thing]).find.to_a.map{|t| from_bson_id(t)}.to_json
   end

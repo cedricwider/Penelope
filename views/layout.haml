@@ -39,6 +39,8 @@
           %ul.nav.navbar-nav.navbar-right
             - if @user
               %p.navbar-text.navbar-right Signed in as #{@user.firstname} #{@user.lastname}
+              %li
+                %a{:href => '/logout'} Logout
             - else
               %form.navbar-form.navbar-right{'role'=>'login',:action=>'/login',:method=>'post'}
                 %div.form-group

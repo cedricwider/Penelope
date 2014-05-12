@@ -1,7 +1,10 @@
 class Penelope < Sinatra::Application
 
   before '/api/*' do
-    halt 404 unless request.path_info =~ /^\/api\/(user)(\/\w+)?$/
+    unless request.path_info =~ /^\/api\/(user)(\/\w+)?$/
+      puts "path #{request.path_info} doesn't match /api/user"
+      halt 404
+    end
   end
 
   get '/api/:thing' do

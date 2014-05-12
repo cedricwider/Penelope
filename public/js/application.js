@@ -179,6 +179,7 @@ var Wichtel = Wichtel || {
         initialize: function() {
             this.users = new Wichtel.Collections.User();
             Wichtel.events = new Wichtel.Collections.Event();
+
             this.userListView = new Wichtel.Views.UserList({collection: this.users});
             this.eventListView = new Wichtel.Views.EventList({collection: Wichtel.events, el: $('#event_list')});
 
@@ -191,6 +192,10 @@ var Wichtel = Wichtel || {
         index: function() {
             this.users.fetch();
             Wichtel.events.fetch();
+            if (Wichtel.events.isEmpty()) {
+                var dummyEvent = new Event({motto: 'Click here to add event' });
+                Wichtel.Views.EventList.addOne(dummyEvent);
+            }
         }
     });
 

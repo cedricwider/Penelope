@@ -1,4 +1,4 @@
-var Wichtel = Wichtel || {
+var Wichtel = {
     Models: {},
     Collections: {},
     Views: {}
@@ -9,11 +9,12 @@ var Wichtel = Wichtel || {
      * Model definitions
      */
     Wichtel.Models.User = Backbone.Model.extend({
-        idAttribute: 'userId',
+        idAttribute: '_id',
         urlRoot:'/api/user'
     });
 
     Wichtel.Models.Event = Backbone.Model.extend({
+        idAttribute: '_id',
         defaults: {
             participantIds: []
         }
@@ -75,10 +76,11 @@ var Wichtel = Wichtel || {
         render: function() {
             var attributes = this.model.toJSON();
             attributes.numParticipants = attributes.participantIds.length;
-            this.$el.html(this.template(attributes));
+            this.$el.append(this.template(attributes));
             return this;
         },
-        toggleButtonBar: function(){
+        toggleButtonBar: function(event){
+            event.preventDefault();
             $('.togglable').toggleClass('hidden');
         },
         showEditDialog: function(the_model) {
@@ -175,12 +177,12 @@ var Wichtel = Wichtel || {
      * Router definitions
      */
     var AppRouter = Backbone.Router.extend({
-        routes: {"/*" : 'index'},
+        routes: {"/home" : 'index'},
         initialize: function() {
-            this.users = new Wichtel.Collections.User();
+            Wichtel.users = new Wichtel.Collections.User();
             Wichtel.events = new Wichtel.Collections.Event();
 
-            this.userListView = new Wichtel.Views.UserList({collection: this.users});
+            this.userListView = new Wichtel.Views.UserList({collection: Wichtel.users});
             this.eventListView = new Wichtel.Views.EventList({collection: Wichtel.events, el: $('#event_list')});
 
             $('#my_friends').append(this.userListView.el);
@@ -190,19 +192,15 @@ var Wichtel = Wichtel || {
             Backbone.history.start({pushState: true});
         },
         index: function() {
-            this.users.fetch();
+            Wichtel.users.fetch();
             Wichtel.events.fetch();
-            if (Wichtel.events.isEmpty()) {
-                var dummyEvent = new Event({motto: 'Click here to add event' });
-                Wichtel.Views.EventList.addOne(dummyEvent);
-            }
         }
     });
 
     var app = new AppRouter();
     app.start();
     app.index();
-    var me = new Wichtel.Models.User({userId: "me"});
-    me.fetch();
+    Wichtel.me = new Wichtel.Models.User({userId: "me"});
+    Wichtel.me.fetch();
 
 })(jQuery)

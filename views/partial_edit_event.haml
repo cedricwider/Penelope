@@ -1,14 +1,14 @@
 / Your title comment
-
-%div.modal-header
-  %button.close{'type' => 'button', 'data-dismiss' => 'modal', 'aria-hidden' => 'true'} &times;
-  %h4#my_modal_label.modal-title Create/Edit Event
-%div.modal-body
-  %form.form-signin
-    %input.form-control.top-radius{'value' => '{{ motto }}', 'name' => 'motto', 'placeholder' => 'Motto'}
-    %input.form-control.no-radius{'value' => '{{ description }}', 'name' => 'description', 'placeholder' => 'Description'}
-    %input.form-control.no-radius{'value' => '{{ location }}', 'name' => 'location', 'placeholder' => 'Location'}
-    %input.form-control.no-radius{'value' => '{{ date }}', 'name' => 'date', 'placeholder' => 'Date'}
-%div.modal-footer
-  %button.btn.btn-default{'type' => 'button', 'data-dismiss' => 'modal', 'data-backbone-reset' => 'true'} Close
-  %button.btn.btn-primary{'type' => 'button', 'data-backbone-save' => 'true'} Save Changes
+%script#edit_event_template{'type' => 'text/x-handlebars-template'}
+  %div.modal-header
+    %button.close{'type' => 'button', 'data-dismiss' => 'modal', 'aria-hidden' => 'true'} &times;
+    %h4#my_modal_label.modal-title Create/Edit Event
+  %div.modal-body
+    %form.form-signin
+      %input.form-control.top-radius{'value' => '{{ motto }}', 'name' => 'motto', 'placeholder' => 'Motto'}
+      %input.form-control.no-radius{'value' => '{{ description }}', 'name' => 'description', 'placeholder' => 'Description'}
+      %input.form-control.no-radius{'value' => '{{ location }}', 'name' => 'location', 'placeholder' => 'Location'}
+      %input.form-control.no-radius{'value' => '{{ date }}', 'name' => 'date', 'placeholder' => 'Date'}
+  %div.modal-footer
+    %button.btn.btn-default{'type' => 'button', 'data-dismiss' => 'modal', 'data-backbone-reset' => 'true'} Close
+    %button.btn.btn-primary{'type' => 'button', 'data-backbone-save' => 'true'} Save Changes

@@ -1,10 +1,10 @@
 / Template for a single event item in the list
-
-%li.list-group-item.main
-  %span.badge {{ numParticipants }}
-  <em>{{ date }}</em> {{ motto }}
-%li.list-group-item.bg-dark-white.hidden.togglable
-  &nbsp;
-  %span.glyphicon.glyphicon-plus.pull-right.add
-  %span.glyphicon.glyphicon-pencil.pull-right.edit
-  %span.glyphicon.glyphicon-remove.poll-right.delete
+%script#event_list_item_template{'type' => 'text/x-handlebars-template'}
+  %li.list-group-item.main
+    %span.badge {{ numParticipants }}
+    <em>{{ date }}</em> {{ motto }}
+  %li.list-group-item.bg-dark-white.hidden.togglable
+    &nbsp;
+    %span.glyphicon.glyphicon-plus.pull-right.add
+    %span.glyphicon.glyphicon-pencil.pull-right.edit
+    %span.glyphicon.glyphicon-remove.poll-right.delete

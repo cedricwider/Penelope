@@ -4,7 +4,6 @@ require 'json'
 require 'haml'
 
 class Penelope < Sinatra::Application
-
   enable :sessions
 
   # set folder for templates to 'views'
@@ -14,6 +13,9 @@ class Penelope < Sinatra::Application
     @app_name = 'Penelope'
     @title = @app_name
     @user = session['user']
+    if @user.nil?
+      redirect('/', 303) unless request.path_info =~ /\/(login|signup)?/
+    end
   end
 
   # don't enable logging when running tests
@@ -23,11 +25,8 @@ class Penelope < Sinatra::Application
 
   # define default routes here...
   get '/' do
-    if @user.nil?
-      haml :index, :attr_wrapper => '"'
-    else
-      redirect to('/home')
-    end
+    return haml :index, :attr_wrapper => '"' if @user.nil?
+    redirect to('/home')
   end
 
   get '/home' do

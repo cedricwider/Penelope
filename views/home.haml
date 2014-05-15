@@ -29,7 +29,7 @@
         / My Events
         %div.col-md-5
           %div#my_events.panel.panel-info
-            %div.panel.panel-heading
+            %div.panel-heading
               %h4 My Events
         %ul#event_list.list-group
         / End My Events
@@ -50,7 +50,10 @@
 
   / template definition
 
-%script#edit_event_template{'type' => 'text/x-handlebars-template', 'src' => '/home/edit_event_template'}
-%scipt#event_list_item_template{'type' => 'text/x-handlebars-template', 'src' => '/home/event_list_item_template'}
+  =partial :partial_edit_event
+
+  %div{:style => 'visibility:hidden;'}
+    =partial :partial_event_list_item
+
 %script{'src' => '/js/application.js'}
   / End template definition

@@ -28,11 +28,6 @@ class Penelope < Sinatra::Application
     return haml :index, :attr_wrapper => '"' if @user.nil?
     redirect to('/home')
   end
-
-  get '/home' do
-    haml :home
-  end
-
 end
 
 require_relative 'models/init'

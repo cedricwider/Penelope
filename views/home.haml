@@ -4,11 +4,16 @@
 
   /Jumbotron
   .jumbotron.bg-white
-    %h2 #{@user.firstname}&nbsp;#{@user.lastname}
-    %small
+    %span
       .row
-        .col-sm-4
-          %span.glyphicon.glyphicon-envelope &nbsp;#{@user.email}
+        .col-lg-1
+          %img.img-circle{:src => "#{@gravatar_url}", :alt => 'you'}
+        .col-lg-11
+          %h2 #{@user.firstname}&nbsp;#{@user.lastname}
+          %small
+            .row
+              .col-sm-4
+                %span.glyphicon.glyphicon-envelope &nbsp;#{@user.email}
   / End Jumbotron
 
   / Upcoming Events
@@ -31,7 +36,7 @@
           #my_events.panel.panel-info
             .panel-heading
               %h4 My Events
-        %ul#event_list.list-group
+            %ul#event_list.list-group
         / End My Events
 
         / My Friends

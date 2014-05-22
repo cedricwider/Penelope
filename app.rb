@@ -13,8 +13,8 @@ class Penelope < Sinatra::Application
     @app_name = 'Penelope'
     @title = @app_name
     @user = session['user']
-    if @user.nil?
-      redirect('/', 303) unless request.path_info =~ /\/(login|signup)?/
+    if (@user.nil? && request.path_info =~ /\/.+/)
+      redirect('/', 303) unless request.path_info =~ /\/(login|signup)/
     end
   end
 

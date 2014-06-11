@@ -1,6 +1,8 @@
 / Your title comment
-
-.container
+%script{'src' => '/js/app/youser.js'}
+%script{'src' => '/js/app/factories/factories.js'}
+%script{'src' => '/js/app/controllers/controllers.js'}
+.container{'ng-app' => 'youserApp'}
 
   /Jumbotron
   .jumbotron.bg-white
@@ -15,10 +17,9 @@
   .panel.panel-primary
     .panel-heading
       %h4 Upcoming Events
-    .panel-body
-      .row
-        .col-md-11
-          <em>09.04.1979</em> My Birthday
+    %ul.list-group{'ng-controller' => 'EventCtrl'}
+      %li.list-group-item{'ng-repeat' => 'event in upcomingEvents | limitTo: 3'}
+        <em>{{event.date | date}}</em> {{event.motto}}
   / End Upcoming Events
 
   / Middle Area
@@ -27,21 +28,24 @@
       .row
 
         / My Events
-        .col-md-5
+        .col-md-5{'ng-controller' =>'EventCtrl'}
           #my_events.panel.panel-info
             .panel-heading
               %h4 My Events
             %ul#event_list.list-group
-              %li.list-group-item Event
+              %li.list-group-item{'ng-repeat' => 'event in events | limitTo: 3'}
+                %span.badge {{event.participants.length}}
+                <em>{{event.date | date}}</em> {{event.motto}}
         / End My Events
 
         / My Friends
-        .col-md-offset-2.col-md-5
+        .col-md-offset-2.col-md-5{'ng-controller' => 'UserCtrl'}
           #my_friends.panel.panel-info
             .panel-heading
               %h4 My Friends
             %ul#friend_list.list-group
-              %li.list-group-item Friend
+              %li.list-group-item{'ng-repeat' => 'user in users | limitTo: 3'}
+                {{user.firstname}} {{user.lastname}}
         / End My Friends
   / End Middle Area
 
@@ -50,13 +54,3 @@
     .modal-dialog
       #event_edit_view.modal-content.bg-dark-white
   / End Modal definition
-
-  / template definition
-
-  =partial :partial_edit_event
-
-  %div{:style => 'visibility:hidden;'}
-    =partial :partial_event_list_item
-
-%script{'src' => '/js/application.js'}
-  / End template definition

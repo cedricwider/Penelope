@@ -1,0 +1,71 @@
+/ Upcoming Events
+.panel.panel-primary
+  .panel-heading
+    %h4
+      Upcoming Events
+      %small.pull-right
+        %a{'href' => '#/events'} View All
+  %ul.list-group
+    %li.list-group-item{'ng-repeat' => 'event in upcomingEvents | limitTo: 3'}
+      <em>{{event.date | date}}</em> {{event.motto}}
+/ End Upcoming Events
+
+/ Middle Area
+.row.top-buffer
+  .col-lg-12
+    .row
+      / My Events
+      .col-md-5
+        #my_events.panel.panel-info
+          .panel-heading
+            %h4
+              My Events
+              %small.pull-right
+                %a{'href' => '#/events'}View All
+          %ul#event_list.list-group
+            %li.list-group-item{'ng-repeat' => 'event in events | limitTo: 3'}
+              %span.badge {{event.participants.length}}
+              <em>{{event.date | date}}</em> {{event.motto}}
+      / End My Events
+
+      / My Friends
+      .col-md-offset-2.col-md-5
+        #my_friends.panel.panel-info
+          .panel-heading
+            %h4
+              My Friends
+              %small.pull-right
+                %a{'href' => '#/friends'}View All
+          %ul#friend_list.list-group
+            %li.list-group-item{'ng-repeat' => 'user in users | limitTo: 3'}
+              {{user.firstname}} {{user.lastname}}
+      / End My Friends
+
+    .row
+      / My Wishlist
+      .col-md-5
+        .panel.panel-info
+          .panel-heading
+            %h4
+              My Wishlist
+              %small.pull-right
+                %a{'href' => '#/wishlist'}View All
+          %ul.list-group
+            %li.list-group-item{'ng-repeat' => 'item in wishlist | limitTo: 3'}
+              {{item.description}}
+              %span.pull-right
+                {{item.price | currency}}
+      / End My Wishlist
+
+      / My Wichtlers
+      .col-md-offset-2.col-md-5
+        .panel.panel-info
+          .panel-heading
+            %h4
+              My Wichtlers
+              %small.pull-right
+                %a{'href' => '#/wichtlers'}View All
+          %ul.list-group
+            %li.list-group-item{'ng-repeat' => 'wichtler in wichtlers | limitTo: 3'}
+              {{wichtler.firstname}} {{wichtler.lastname}}
+/ End Middle Area

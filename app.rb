@@ -26,7 +26,7 @@ class Penelope < Sinatra::Application
   # define default routes here...
   get '/' do
     return haml :index, :attr_wrapper => '"' if @user.nil?
-    redirect to('/home')
+    redirect to('/app')
   end
 end
 

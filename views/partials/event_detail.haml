@@ -1,0 +1,14 @@
+.panel.panel-info
+  .panel-heading
+    %h4
+      .form-group
+        %input.form-control{'type' => 'text', 'placeholder' => 'Motto', 'name' => 'motto', 'ng-model' => 'event.motto'}
+  .panel-body
+    .form-group
+      %input.form-control{'type' => 'text', 'placeholder' => 'Location', 'name' => 'location', 'ng-model' => 'event.location'}
+      %input.form-control{'type' => 'text', 'placeholder' => '01.01.1900', 'name' => 'date', 'ng-model' => 'event.date'}
+      %input.form-control{'type' => 'text', 'placeholder' => 'Description', 'name' => 'description', 'ng-model' => 'event.description'}
+.row
+  .col-lg-3.col-lg-offset-9
+    %button.btn-primary.btn.pull-right{'ng-click' => 'save(event)'} Save
+

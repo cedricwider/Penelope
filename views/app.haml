@@ -1,0 +1,22 @@
+/ Your title comment
+/Jumbotron
+.jumbotron.bg-white
+  %span
+    .row
+      .col-lg-1
+        %img.img-circle{:src => "#{@gravatar_url}", :alt => 'you'}
+      .col-lg-11
+        %h2 #{@user.firstname}&nbsp;#{@user.lastname}
+        %small
+          .row
+            .col-sm-4
+              %span.glyphicon.glyphicon-envelope &nbsp;#{@user.email}
+/ End Jumbotron
+
+.ng-view
+
+/ Modal definition
+#event_edit.fade.modal{'tabindex'=>'-1', 'role'=>'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true'}
+  .modal-dialog
+    #event_edit_view.modal-content.bg-dark-white
+/ End Modal definition

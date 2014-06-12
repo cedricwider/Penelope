@@ -12,7 +12,7 @@ class Penelope < Sinatra::Application
     @user.firstname =user_doc['firstname']
     @user.lastname =user_doc['lastname']
     session['user'] = @user
-    redirect to('/home')
+    redirect to('/app')
   end
 
   get '/signup' do
@@ -35,7 +35,7 @@ class Penelope < Sinatra::Application
     login_request.user_id = user_id
     DB.collection('logindata').insert({:user_id=>user_id, :password=>login_request.password})
     session['user'] =@user
-    redirect to('/home')
+    redirect to('/app')
   end
 
   get '/logout' do

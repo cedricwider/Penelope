@@ -1,0 +1,12 @@
+.row
+  .col-sm-6.col-md-4{'ng-repeat' => 'event in events'}
+    .panel.panel-info
+      .panel-heading
+        %h4{'ng-click' => 'showDetails(event.id)'}
+          {{event.motto}}
+          %small.pull-right
+            ({{event.owner.firstname}} {{event.owner.lastname}})
+      .panel-body
+        %ul.list-group
+          %li.list-group-item Location: {{event.location}}
+          %li.list-group-item Date: {{event.date | date}}

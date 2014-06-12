@@ -2,11 +2,11 @@ require 'digest/md5'
 
 class Penelope < Sinatra::Application
 
-  get '/home' do
+  get '/app' do
     hash = Digest::MD5.hexdigest(@user.email)
     @gravatar_url= "http://www.gravatar.com/avatar/#{hash}"
     puts @gravatar_url
-    haml :home
+    haml :app
   end
 
   get '/home/edit_event_template' do

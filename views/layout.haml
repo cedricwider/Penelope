@@ -25,7 +25,8 @@
   %script{'src' => '/js/respond.min.js'}
   %script{'src' => 'js/libs/angular.min.js'}
   %script{'src' => '/js/libs/angular-resource.min.js'}
-%body
+  %script{'src' => '/js/libs/angular-route.min.js'}
+%body{'ng-app' => 'youserApp'}
 
   /Navbar
   %header.navbar.navbar-static-top.bs-docs-nav{'role'=>'banner'}
@@ -59,6 +60,9 @@
     = yield
   %footer
 
+  %script{'src' => '/js/app/youser.js'}
+  %script{'src' => '/js/app/factories/factories.js'}
+  %script{'src' => '/js/app/controllers/controllers.js'}
   %script{'src' => '//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'}
   %script
     window.jQuery || document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>')

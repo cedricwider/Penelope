@@ -1,4 +1,4 @@
-var youserApp = angular.module('youserApp', ['ngRoute']);
+var youserApp = angular.module('youserApp', ['ngRoute', 'restangular']);
 
 youserApp.config(['$routeProvider', function($routeProvider){
     $routeProvider.
@@ -30,3 +30,14 @@ youserApp.config(['$routeProvider', function($routeProvider){
             {redirectTo: '/'}
         );
 }]);
+
+youserApp.config(function(RestangularProvider){
+    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider.setRestangularFields({
+      id: "_id"
+    });
+});
+
+youserApp.run(function($rootScope, userFactory) {
+    $rootScope.me = userFactory.findMe();
+})

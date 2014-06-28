@@ -2,11 +2,24 @@
   .col-sm-6.col-md-4{'ng-repeat' => 'event in events'}
     .panel.panel-info
       .panel-heading
-        %h4{'ng-click' => 'showDetails(event.id)'}
+        %h4{'ng-click' => 'showDetails(event._id)'}
           {{event.motto}}
           %small.pull-right
-            ({{event.owner.firstname}} {{event.owner.lastname}})
+            ({{findOwner(event).firstname}} {{findOwner(event).lastname}})
+            %span.glyphicon.glyphicon-remove{'ng-click' => 'delete(event)', 'ng-show' => 'me._id === event.owner'}
       .panel-body
         %ul.list-group
           %li.list-group-item Location: {{event.location}}
           %li.list-group-item Date: {{event.date | date}}
+
+  .col-sm-6.col-md-4
+    .panel.panel-info
+      .panel-heading
+        %h4{'ng-click' => 'createEvent()'}
+          Create new Event
+          %small.pull-right
+            ({{me.firstname}} {{me.lastname}})
+      .panel-body
+        %ul.list-group
+          %li.list-group-item Location: Wherever you want
+          %li.list-group-item Date: Whenever you want

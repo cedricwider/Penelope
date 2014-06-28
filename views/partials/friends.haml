@@ -1,0 +1,9 @@
+.row
+  .col-sm-6.col-md-4{'ng-repeat' => 'friend in friends'}
+    .panel.panel-info
+      .panel-heading
+        %h4
+          {{friend.firstname}} {{friend.lastname}}
+      .panel-body
+        %em
+          {{friend.email}}

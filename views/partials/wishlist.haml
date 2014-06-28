@@ -1,0 +1,17 @@
+.panel.panel-info
+  .panel-heading
+    %h4 My Wishlist
+  .panel-body
+    %ul.list-group
+      %li.list-group-item{'ng-repeat' => 'wish in wishlist'}
+        {{wish.description}}
+        %span.pull-right
+          {{wish.price | currency}}
+          %span.glyphicon.glyphicon-remove{'ng-click' => 'delete(wish)'}
+    .row
+      .col-sm-8
+        %input.form-control{'type' => 'text', 'placeholder' => 'Description', 'name' => 'description', 'ng-model' => 'new_wish.description'}
+      .col-sm-3
+        %input.form-control{'type' => 'number', 'placeholder' => 'Price', 'name' => 'price', 'ng-model' => 'new_wish.price'}
+      .col-sm-1
+        %span.glyphicon.glyphicon-ok{'ng-click' => 'save(new_wish)'}

@@ -1,4 +1,4 @@
-.panel.panel-info
+.panel.panel-info{'ng-show' => 'edit'}
   .panel-heading
     %h4
       .form-group
@@ -6,9 +6,35 @@
   .panel-body
     .form-group
       %input.form-control{'type' => 'text', 'placeholder' => 'Location', 'name' => 'location', 'ng-model' => 'event.location'}
-      %input.form-control{'type' => 'text', 'placeholder' => '01.01.1900', 'name' => 'date', 'ng-model' => 'event.date'}
+      %input.form-control{'type' => 'date', 'placeholder' => '01.01.1900', 'name' => 'date', 'ng-model' => 'event.date'}
       %input.form-control{'type' => 'text', 'placeholder' => 'Description', 'name' => 'description', 'ng-model' => 'event.description'}
-.row
+.row{'ng-show' => 'edit'}
   .col-lg-3.col-lg-offset-9
     %button.btn-primary.btn.pull-right{'ng-click' => 'save(event)'} Save
+
+.panel.panel-info{'ng-show' => '!edit'}
+  .panel-heading
+    %h4
+      {{event.motto}}
+  .panel-body
+    %ul.list-group
+      %li.list-group-item
+        {{event.location}}
+      %li.list-group-item
+        {{event.date}}
+      %li.list-group-item
+        {{event.description}}
+    .row
+      .col-lg-3.col-lg-offset-9{'ng-show' => 'canJoin()'}
+        %button.btn-primary.btn.pull-right{'ng-click' => 'join()'}I'm going
+      .col-lg-3.col-lg-offset-9{'ng-show' => '!canJoin()'}
+        %button.btn-primary.btn.pull-right{'ng-click' => 'unjoin()'}I can't attend
+
+.panel.panel-info{'ng-show' => 'event.participants.length > 0'}
+  .panel-heading
+    %h4 Paricipants
+  .panel-body
+    %ul.list-group
+      %li.list-group-item{'ng-repeat' => 'participant_id in event.participants'}
+        {{participantForId(participant_id)}}
 

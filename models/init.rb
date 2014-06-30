@@ -1,5 +1,6 @@
 require 'mongo'
 require 'uri'
+require_relative '../data/dao_factory'
 
 def get_connection
   return @db_connection if @db_connection
@@ -15,5 +16,7 @@ def get_connection
 end
 
 DB = get_connection
+
+DAO_FACTORY = DaoFactory.new(DB)
 
 require_relative 'user_data'

@@ -1,5 +1,7 @@
 require_relative '../helpers/type_converter'
 require_relative '../helpers/query_helper'
+require_relative '../business/wichtel_engine'
+require_relative '../data/wichtel_assignment'
 
 class Penelope < Sinatra::Application
 
@@ -22,6 +24,16 @@ class Penelope < Sinatra::Application
     query = params[:query] || ''
     search_query = QueryHelper.to_mongodb_query(unescape(query, encoding='UTF-8'))
     DAO_FACTORY.new_dao(params[:thing]).find(search_query).to_json
+  end
+
+  post '/api/wichtel/:event_id/init' do
+    event = DAO_FACTORY.new_event_dao.find_one(params[:event_id])
+    assignments = WichtelEngine.new.wichtelize(event.participants)
+    wichtel_dao = DAO_FACTORY.new_wichtel_dao
+    assignments.each do |servant, v|
+      v.each{|servee| wichtel_dao.insert(WichtelAssignment.new(event._id, servant, servee))}
+    end
+    '{"result": "ok"}'
   end
 
   post '/api/:thing' do

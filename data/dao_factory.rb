@@ -31,6 +31,8 @@ class DaoFactory
         new_event_dao
       when 'wishlist'
         new_wishlist_dao
+      when 'wichtel'
+        new_wichtel_dao
       else
         nil
     end
